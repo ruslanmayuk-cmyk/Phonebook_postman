@@ -133,7 +133,12 @@
 										"exec": [
 											"pm.test(\"Body matches string:Contact was added!\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Contact was added!\");\r",
-											"});"
+											"});\r",
+											"let response = pm.response.json();\r",
+											"let parts = response.message.split(\"ID: \");\r",
+											"\r",
+											"let contactId = parts[1];\r",
+											"pm.environment.set(\"id\", contactId);"
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -144,8 +149,12 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "e3ae2e83-7edb-4658-a21a-9d6933289d55",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
